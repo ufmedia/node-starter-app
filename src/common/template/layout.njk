@@ -1,0 +1,12 @@
+{% set title = "Test App!" %}
+<!doctype html>
+<html  lang="en">
+  <head>
+    <title>{{ title }}</title>
+  </head>
+  <body> 
+    {% block content %}{% endblock %}
+  </body>
+  <script src="{{ js_path }}"></script>
+  <script src="/govuk-frontend/all.js"></script>
+</html>
