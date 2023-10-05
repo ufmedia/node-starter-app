@@ -1,33 +1,17 @@
-const path = require("path");
-const NodemonPlugin = require('nodemon-webpack-plugin')
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
+const NodemonPlugin = require('nodemon-webpack-plugin'); // Added
 
 module.exports = {
-    entry: "./src/assets/main.js",
-    output: {
-        filename: "bundle.js",
-        path: path.resolve(__dirname, "assets"),
-    },
-
-    module: {
-        rules: [
-            {
-                test: /\.(sa|sc|c)ss$/,
-                use: [
-                    "style-loader",
-                    "css-loader",
-                    {
-                        loader: "postcss-loader",
-                        options: {
-                            postcssOptions: {
-                                plugins: ["autoprefixer"],
-                            },
-                        },
-                    },
-                    "sass-loader",
-                ],
-            },
-        ],
-    },
-    plugins: [new NodemonPlugin()]
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  target: 'node',
+  externals: [nodeExternals()],
+  devtool: 'source-map',
+  plugins: [
+    new NodemonPlugin()  // Add nodemon plugin here
+  ]
 };
-

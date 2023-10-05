@@ -3,7 +3,7 @@ const indexServices = require('../services/index.services');
 async function get(req, res, next) {
   try {
       const data = await indexServices.get(req);
-      res.render('src/views/index.view.njk', data);
+      res.json(data);
   } catch (err) {
       console.error(`Get Error`, err.message);
       next(err);
